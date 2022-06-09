@@ -1,23 +1,28 @@
-# Basic
+---
+slug: basic
+title: Basic
+tags: [react]
+---
+***
+
+React 的基礎觀念
 
 ## 創建專案
 至終端機輸入, hello-world為專案名稱
 ```terminal
 create-react-app hello-world
 ```
-- component class / React component type
-- component 接收 *props*參數, 並透過 *render* 這個方法回傳到view上
 
-> ## Virtual DOM
-> - **DOM** 是瀏覽器中的概念, 用JavaScript Object 表示頁面上的元素, 並提供操作DOM OBject的API
-> - **Virtual DOM** 是 JavaScript Object 來模擬DOM和DOM嵌套關係, 以實現頁面的高效更新. 
+## 🧱 Virtual DOM
+- <code>DOM</code> 是瀏覽器中的概念，用 JavaScript Object 表示頁面上的元素，並提供操作 DOM object 的 API。
+- <code>Virtual DOM</code> 是 JavaScript object 來模擬 DOM 和 DOM嵌套 關係，以實現頁面的高效更新。
 
-> ## Diff 算法
-> - **tree diff:** 新舊DOM樹逐層對比的過程.
-> - **component diff:** 進行tree diff時, 每層中component的對比.
->   - 如果對比前後component類型相同, 則**暫時**認為此component不需被更新
->   - 如果對比前後component類型不同, 則移除舊component, 創建新component並追加到頁面上
-> - **element diff:** 進行component diff時, 如果兩個component類型相同, 則需進行element的對比
+## 🧱 Diff 算法
+- <code>tree diff</code>： 新舊DOM樹逐層對比的過程。
+- <code>component diff</code>： 進行 tree diff 時每層中 component 的對比。如果對比前後 component 類型結果： <br />
+  - 相同： 暫時認為此 component 不需被更新。 <br />
+  - 不同： 移除舊 component ，創建新 component 並追加到頁面上。
+- <code>element diff</code>： 進行 component diff 時，如果兩個 component 類型相同，則需進行 element 的對比。
 
 ## Style
 - 同元素只可存在一個class屬性
@@ -28,19 +33,6 @@ const style = {
   borderBottom: "1px solid black"
 }
 ```
-- 
-
-## Rendering Elements
-- "root" DOM 內所有內容都由 React DOM 管理, 透過 `ReactDOM.render()` 將 React element 渲染到 root DOM node
-```jsx
-const element = <h1>Hello</h1>
-ReactDOM.render(element, document.getElementById('root'))
-```
-- React elements are immutable. Once you create an element, you can’t change its children or attributes
-- React 只會更新它需要更新的部分: React DOM 會將元素與子元素與之前的狀態比較, 並只進行必要的更新
-- 只有當下列兩中情形發生時, ReactDOM才會進入re-render該component的update程序更新畫面
-  - *props* 值改變
-  - *state* 值改變
 
 ## Component 組件
 - 組件名稱首字必須以大寫字母開頭: React會將小寫字母開頭的組件視為原生DOM標籤

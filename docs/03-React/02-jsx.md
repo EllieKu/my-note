@@ -1,4 +1,10 @@
-# JSX
+---
+slug: jsx
+title: JSX
+tags: [react]
+---
+***
+
 ```jsx
 const element = <h1>Hello World</h1>
 ```
