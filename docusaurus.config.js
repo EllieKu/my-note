@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   title: 'Eli Note',
   tagline: 'In my programming path',
   url: 'https://ellieku.github.io',
-  baseUrl: '/',
+  baseUrl: '/my-note/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
