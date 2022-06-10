@@ -1,4 +1,61 @@
-# props
+---
+slug: components-and-props
+title: Components and Props
+tags: [react]
+---
+***
+
+## 🍉 Components
+組件名稱必須以大寫字母開頭。
+
+<br/>
+
+### Function Component
+一般用於無狀態、靜態、沒有交互事件的組件頁面。
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>
+}
+```
+
+<br/>
+
+### Class Component
+又稱為動態組件，一般會有交互或數據的修改(有狀態)。
+```jsx
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {props.name}</h1>
+  }
+}
+```
+- 需要綁定 <code>this</code>，如果忘記綁定 <code>this.handleClick</code> 並將它傳入 <code>onClick</code>，當調用此函數時 <code>this</code> 的值為 <code>undefined</code>。
+```jsx
+  class Toggle extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {isToggleOn: true}
+
+      // 為了在回調函數中使用, 此綁不可少
+      this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick() {
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn
+      }))
+    }
+
+    render() {
+      <button onClick={this.handleClick}>{this.state.isToggleOn? 'ON' : 'OFF' }</button>
+    }
+  }
+
+```
+
+<br/>
+
+## 🍉 Props
 - 組件會將JSX接收的屬性(attribute)和子組件(children)轉換為single object, 此稱為 *props*
 - 無論是用 function 或 class 聲明組件, 都不能修改自身的props
 - 使用前必須在 *constructor* 加上 `super(props)` 取得繼承class的變數結構

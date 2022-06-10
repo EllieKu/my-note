@@ -2,10 +2,9 @@
 ***
 
 ## 🎈 State Hook
+<code>useState</code> 類似 class 組件的 <code>this.state</code>， 透過在 function 組件內調用來給組件添加一個內部的 state。
 
-<code>useState</code> 類似class組件的 <code>this.state</code>， 透過在function組件內調用來給組件添加一個內部的state。
-
-```jsx {5}
+```jsx {1,5}
 import React, { useState } from 'react'
 
 function Example() {
@@ -30,9 +29,10 @@ function Example() {
 </button>
 ```
 
-### ✨ Declaring multiple state variables
+<br/>
 
-可在同組件內多次使用 <code>useState</code>， 更新state是<code>替換</code>而不是合併。
+### Declaring multiple state variables
+可在同組件內多次使用 <code>useState</code>， 更新 state 是<code>替換</code>而不是合併。
 
 ```jsx
 function ExampleWithManyStates() {
@@ -50,9 +50,10 @@ function ExampleWithManyStates() {
 }
 ```
 
-## 🎈 Effect Hook
+<br/>
 
-<code>useEffect</code> 給function組件增加 side effect，它和 class 組件中的 <code>componentDidMount</code>、<code>componentDidUpdate</code>、<code>componentWillUnmount</code>具有相同用途。 
+## 🎈 Effect Hook
+<code>useEffect</code> 給 function 組件增加 side effect，它和 class 組件中的 <code>componentDidMount</code>、<code>componentDidUpdate</code>、<code>componentWillUnmount</code>具有相同用途。 
 
 ```jsx {1,7-9}
 import React, { useState, useEffect } from 'react'
@@ -108,11 +109,13 @@ function FriendState(props) {
 
 ```
 
+<br/>
+
 ## 🏕️ Hooks rules
+1. 只能在函數頂層調用 Hook。不要在 loops、conditions、nested functions 調用。
+2. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
 
-1. 只能在函數頂層調用 Hook。 不要在 loops, conditions, or nested functions 調用。
-2. 只能在React的function組件中調用, 不要在其他JavaScript函數中調用（还有一个地方可以调用 Hook —— 就是自定义的 Hook ）
-
+<br/>
 
 ## 🔪 Building Your Own Hooks
 
@@ -121,7 +124,7 @@ function FriendState(props) {
   2. render props
   3. custom hooks
 
-如果函數的名字以"use"開頭並調用其他 hook，我們就說這一定是自定義 hook。 <br />
+如果函數的名字以 "use" 開頭並調用其他 hook，我們就說這一定是自定義 hook。 <br />
 範例:
 ```jsx
 // 1. 將狀態邏輯抽取至名為 useFriendStatus 的自定義 hook，

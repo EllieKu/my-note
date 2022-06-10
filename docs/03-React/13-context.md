@@ -2,23 +2,23 @@
 
 - 無需在每層添加props, 就能組件樹間進行數據傳遞
 - API:
-  - [React.createContext](###React.createContext)
+  - [React.createContext](#reactcreatecontext)
   - Context.Provider
   - Class.contextType
   - Context.Consumer
-  - [Context.displayName](###Context.displayName)
+  - [Context.displayName](#contextdisplayname)
 
 ## API
 
 ### React.createContext
-```JavaScript
+```jsx
 const MyContext  = React.CreateContext(defaultValue)
 ```
 創建context對象, 只有當組件所處的樹中沒有匹配Provider時, defaultValue參數才會生效
 
 
 ### Context.Provider
-```JavaScript
+```jsx
 <MyContext.Provider value={/*某個值*/}>
 ```
 1. 訂閱context變化, Provider接受一個value屬性, 傳遞給consumer組件
@@ -26,7 +26,7 @@ const MyContext  = React.CreateContext(defaultValue)
 3. 當Provider的value值發生變化, 它內部所有的consumer組件都會重新渲染. Provider及其內部consumer組件都不受制於shouldComponentUpdate函數
 
 ### Class.contextType
-```JavaScript
+```jsx
 class MyClass extends React.component {
   componentDidMount() {
     let value = this.context;
@@ -46,7 +46,7 @@ MyClass.contextType = MyContext
 1. 掛載在class上的contextType屬性會被重新賦值, 為由React.createContext()創建的context對象, 讓你能使用this.context來消費最近context上的那個值
 2. 可以在任何生命週期及render函數中訪問
 
-```JavaScript
+```jsx
 // 你正在使用实验性的 public class fields 语法，你可以使用 static 这个类属性来初始化你的 contextType。
 class MyClass extends React.Component {
   static contextType = MyContext;
@@ -59,7 +59,7 @@ class MyClass extends React.Component {
 
 
 ### Context.Consumer
-```JavaScript
+```jsx
 <MyContext.Consumer>
   {value => /* 基于 context 值进行渲染*/}
 </MyContext.Consumer>
@@ -69,7 +69,7 @@ class MyClass extends React.Component {
 
 
 ### Context.displayName
-```JavaScript
+```jsx
 const MyContext = React.createContext(/* some value */);
 MyContext.displayName = 'MyDisplayName';
 
