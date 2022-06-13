@@ -6,26 +6,48 @@ tags: [react]
 ***
 
 ## 🍉 State
-- state 是**私有**的且**完全受控於當前組件**
-- 不要直接修改 state, 應使用 **setState()**
+state 是私有的且完全受控於當前組件。
+
+<br/>
+
+### Do Not Modify State Directly
+
+使用 <code>setState()</code> 修改 state。
 ```jsx
-this.state.comment = 'Hello' // wrong, 此行不會重新渲染組件
-this.setState({comment: 'Hello'}) // correct
+// wrong
+this.state.comment = 'Hello'
+
+// correct
+this.setState({comment: 'Hello'}) 
 ```
-- state 和 props 可能是異步更新, 不要依賴它們的值來更新下一個狀態.
+
+<br/>
+
+### State Updates May Be Asynchronous
+
+<code>this.state</code> 和 <code>this.props</code> 可能是異步更新，不要依賴它們的值來更新下一個狀態。
+
 ```jsx
 // wrong
 this.setState({ 
   counter: this.state.counter + this.props.increment
 })
 
-// correct, 讓setState()接收一個函數
+// correct, 讓 setState() 接收 function
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }))
 ```
-- state 的更新會被合併： 當調用 `setState()` 以下看不懂
-- 數據是自上而下的單向流動. state只屬於該組件, 且只能影響低於它們的組件
+
+<br/>
+
+### State Updates are Merged
+當調用 <code>setState()</code>， React 會提供的 object 合併到當前 state。
+
+<br/>
+
+### The Data Flows Down
+通常是自上而下或單向的數據流。state 只屬於該組件，且從該 state 衍生的數據或 UI 只能影響樹中低於它們的組件。
 
 <br/>
 

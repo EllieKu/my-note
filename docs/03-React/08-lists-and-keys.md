@@ -1,61 +1,63 @@
-# Lists and Keys
+---
+slug: lists-and-keys
+title: List and Keys
+tags: [react]
+---
+***
+## 🍉 List
 
-## Rendering Multiple Components
-- 透過 `{}` 在 JSX 內建構元素集合
+### Rendering Multiple Components
+使用 <code>{ }</code> 在建構元素集合
 ```jsx
-const numbers = [1, 2, 3, 4, 5]
-const elements = numbers.map(el =>
-  <li>{el}</li>
-)
+function List() {
+  const numbers = [1, 2, 3, 4, 5];
+  const listItems = numbers.map((number) =>
+    <li>{number}</li>
+  )
 
-ReactDOM.render(
-  <ul>{elements}</ul>,
-  document.getElementById('root')
-)
-```
-- Embedding map() in JSX
-```jsx
-function List(props) {
-  const numbers = props.numbers
   return (
-    <ul>
-      {
-        numbers.map(el =>
-          <Item key={el.toString()}
-                value={el} />
-      )}
-    </ul>
+    <ul>{listItems}</ul>
   )
 }
 ```
 
-## Key
-- key 幫助 React 識別哪些元素增加或刪除
-```jsx
-function NumberList(props) {
-  const numbers = props.numbers
+<br/>
 
-  const elements = numbers.map((el, index) =>
-    // 不建議用index作爲key, 因會會導致性能變差
-    <li key={index)}>{el}</li>
-  )
-  return elements
-}
-ReactDOM.render(
-  <ul><NumberList numbers={[1, 2, 3]}/></ul>,
-  document.getElementById('root')
+## 🍉 Keys
+keys 用來識別哪些元素有變動。
+```jsx {3}
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) =>
+  <li key={number.toString()}>
+    {number}
+  </li>
 )
 ```
-```jsx
+
+當元素沒有 id 時，萬不得已可以用 index 作為 key。但不建議使用因為會導致性能變差，還可能引起組件狀態問題。
+```jsx {3}
+const todoItems = todos.map((todo, index) =>
+  // Only do this if items have no stable IDs
+  <li key={index}>
+    {todo.text}
+  </li>
+)
+```
+
+<br/>
+
+### Extracting Components with Keys
+key 放在就近數組的上下文中才有意義
+
+```jsx {3,9}
 function Item(props) {
-  // correct, 不需要在這裡指定key
+  // 不需要在這裡指定key
   return <li>{props.value}</li>
 }
 
 function NumberList(props) {
   const number = props.numbers
   const elements = number.map((el) => 
-    // correct, key應該在數組的上下文中被指定
     <Item key={el.toString()} value={el} />
   )
   return elements
@@ -70,8 +72,12 @@ ReactDOM.render(
   document.getElementById('root')
 )
 ```
-- key 只是在兄弟節點中必需唯一
-```jsx
+
+<br/>
+
+### Keys Must Only Be Unique Among Siblings
+當生成兩個不同數組時，可以使用相同 key 值：
+```jsx {5,12}
 function Blog(props) {
   const sidebar = (
     <ul>
@@ -107,13 +113,13 @@ ReactDOM.render(
 );
 ```
 
-- key 屬性值只會傳遞給 React, 不會傳遞給組件
+key 會傳遞數據給 React，但不會傳遞給組件：
 ```jsx
-const content = posts.map(el => 
-  <Post
-    key={el.id}
-    id={el.id}
-    title={el.title} />
-)
 // Post組件可讀出id值, 但不能讀出key值
+const content = posts.map((post) => 
+  <Post
+    key={post.id}
+    id={post.id}
+    title={post.title} />
+)
 ``` 

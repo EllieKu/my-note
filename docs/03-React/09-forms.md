@@ -1,13 +1,21 @@
-# forms
+---
+slug: forms
+title: Forms
+tags: [react]
+---
+***
 
-## Controlled Component 受控組件
-- 表單元素(`<input>`.`<textarea>`.`<select>`等)值保存在 state, 由 state 控制成為**唯一數據源**. 被 React 以這種方式控制取值的表單輸入元素就稱為受控組件
-```jsx
+### Controlled Component
+渲染表單的 React 組件利用 state 來控制著使用者輸入後的行為。 
+对于受控组件来说，输入的值始终由 React 的 state 驱动。
+```jsx {7,12-14,25}
+// write the form as a controlled component
+
 class NameForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {value: 'test'}
+    this.state = {value: ''}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -23,7 +31,7 @@ class NameForm extends React.Component {
 
   render() {
     return(
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label>
           <input type="text" value={this.state.value} onChange={this.handleChange}></input>
         </label>
@@ -32,14 +40,12 @@ class NameForm extends React.Component {
     )
   }
 }
-
-ReactDOM.render(
-  <NameForm />,
-  document.getElementById('root')
-)
 ```
-- `<select>` tag
-```jsx
+
+<br/>
+
+### <select\> tag
+```jsx {4,10-12,24}
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -76,78 +82,84 @@ class FlavorForm extends React.Component {
   }
 }
 ```
-- 在受控組件上指定 *value* 的 *props* 會阻止用戶輸入, 如果指定了 *value* 仍可編輯, 那可能是 *value* 值意外變成了 *undefined* 或 *null*
-```jsx
-// 輸入被鎖定
-ReactDOM.render(<input value="hi" />, document.getElementById('root'));
 
-// 輸入可編輯
-ReactDOM.render(<input value={null} />, document.getElementById('root'));
-```
+<br/>
 
-## 非受控組件
-參閱 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
-```HTML
-<!--因為它的value為readonly -->
+### <input type="file"\> Tag
+允許使用者從裝置中選擇文件上傳至 server，或透過使用 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 控制。
+因為其 value 是唯讀，所以是一個非受控組件。[其它非受控組件](https://zh-hans.reactjs.org/docs/uncontrolled-components.html#the-file-input-tag)
+```html
 <input type="file">
 ```
-[其餘請參閱文檔](https://zh-hans.reactjs.org/docs/uncontrolled-components.html#the-file-input-tag)
 
-## 處理多個輸入元素
+<br/>
 
-可以給每個元素添加 *name* 屬性, 並讓事件處理函數依 *event.target.name* 對應執行的操作
+### Handling Multiple Inputs
+可以給每個元素添加 <code>name</code> 屬性, 並讓事件處理函數依 <code>event.target.name</code> 對應執行的操作
 
-```jsx
-class NameForm extends React.Component {
+```jsx {15,18,28,37}
+class Reservation extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isGoing: true,
-      guests: 2
-    }
+      numberOfGuests: 2
+    };
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleSubmit(e) {
-    console.log(`isGoing: ${this.state.isGoing}, guests: ${this.state.guests}`)
-    e.preventDefault()
-  }
-  
-  handleChange(e) {
-    const name = e.target.name
-    const checked = e.target.checked
-    const value = e.target.value
-    const result = e.target.type === 'checkbox' ? checked : value
-    this.setState({[name]: result}) 
-    // console.log(e)
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   render() {
     return (
       <form>
-        <label>is going:
-          <input 
-            type="checkbox"
-            name="isGoing"
-            checked={this.state.isGoing}
-            onChange={this.handleChange}></input>
-        </label>
-        <br/>
-        <label>number of guests:
+        <label>
+          Is going:
           <input
-            type="number"
-            name="guests"
-            value={this.state.guests}
-            onChange={this.handleChange}></input>
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
         </label>
-        <button type="submit" onClick={this.handleSubmit}>提交</button>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
       </form>
-    )
+    );
   }
 }
 ```
 
-## 其他方案
-[Formik](https://formik.org/) --- 還沒看
+<br/>
+
+### Controlled Input Null Value
+指定受控組件的 <code>value</code> 會阻止用戶輸入。如果指定了 <code>value</code> 但輸入仍可編輯，則可能是 <code>value</code> 值意外變成了 <code>undefined</code> 或 <code>null</code>。
+
+```jsx
+// 一開始被鎖定, 但1秒後變可編輯
+ReactDOM.render(<input value="hi" />, mountNode);
+
+setTimeout(function() {
+  ReactDOM.render(<input value={null} />, mountNode);
+}, 1000);
+```
+
+<br/>
+
+### 其他方案
+[Formik](https://formik.org/)

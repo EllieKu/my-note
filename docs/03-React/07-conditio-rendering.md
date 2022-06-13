@@ -5,11 +5,7 @@ tags: [react]
 ---
 ***
 
-# Condition Rendering
-使用JS運算符`if`或`條件運算符`來更新UI
-- element variable
-- && 運算符
-- 三目運算符
+使用 <code>if</code> 或 <code>conditional operator</code> 來呈現 UI
 
 ```jsx
 function UserGreeting(props) {
@@ -36,14 +32,15 @@ ReactDOM.render(
 )
 ```
 
-## Element Variable
+## 🍉 Element Variable
+
 ```jsx
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
       Login
     </button>
-  );
+  )
 }
 
 function LogoutButton(props) {
@@ -51,32 +48,32 @@ function LogoutButton(props) {
     <button onClick={props.onClick}>
       Logout
     </button>
-  );
+  )
 }
 
 class LoginControl extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = {isLoggedIn: false};
+    super(props)
+    this.handleLoginClick = this.handleLoginClick.bind(this)
+    this.handleLogoutClick = this.handleLogoutClick.bind(this)
+    this.state = {isLoggedIn: false}
   }
 
   handleLoginClick() {
-    this.setState({isLoggedIn: true});
+    this.setState({isLoggedIn: true})
   }
 
   handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+    this.setState({isLoggedIn: false})
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    let button;
+    const isLoggedIn = this.state.isLoggedIn
+    let button
     if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
+      button = <LogoutButton onClick={this.handleLogoutClick} />
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
+      button = <LoginButton onClick={this.handleLoginClick} />
     }
 
     return (
@@ -84,7 +81,7 @@ class LoginControl extends React.Component {
         <Greeting isLoggedIn={isLoggedIn} />
         {button}
       </div>
-    );
+    )
   }
 }
 
@@ -95,9 +92,12 @@ ReactDOM.render(
 
 ```
 
-## Logical && Operator
-`true && expression` 總是返回 `expression`; `false && expression` 總是返回 `false`
-```jsx
+<br/>
+
+## 🍉 Inline If with Logical && Operator
+<code>true && expression</code> return <code>expression</code> ; <code>false && expression</code> return <code>false</code>。
+
+```jsx {6}
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages
   return(
@@ -114,22 +114,26 @@ ReactDOM.render(
 )
 ```
 
-## Inline If-Else with Conditional Operator 三目運算符
-```jsx
-  ...
-  render() {
-    const isLoggedIn = this.state.isLoggedIn
-    return (
-      <div>
-        The user is {isLoggedIn ? 'currently' : 'not'} logged in.
-      </div>
-    )
-  }
+<br/>
+
+## 🍉 Inline If-Else with Conditional Operator
+```jsx {5}
+render() {
+  const isLoggedIn = this.state.isLoggedIn
+  return (
+    <div>
+      The user is {isLoggedIn ? 'currently' : 'not'} logged in.
+    </div>
+  )
+}
 ```
 
-## 阻止組件渲染
-利用`render()`返回`null`
-```jsx
+<br/>
+
+## 🍉 Preventing Component from Rendering
+返回 <code>null</code> 。
+
+```jsx {2-4}
 function WarningBanner(props) {
   if (!props.warn) {
     return null;
