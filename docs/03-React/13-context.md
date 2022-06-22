@@ -1,35 +1,86 @@
-# Context
+---
+slug: context
+title: Context
+tags: [react]
+---
+***
 
-- 無需在每層添加props, 就能組件樹間進行數據傳遞
-- API:
-  - [React.createContext](#reactcreatecontext)
-  - Context.Provider
-  - Class.contextType
-  - Context.Consumer
-  - [Context.displayName](#contextdisplayname)
 
-## API
+```jsx {2,8,30}
+// create a context for current theme (with "light" as the default)
+const ThemeContext = React.CreateContext('light')
+
+class App extends React.Component {
+  render() {
+    return (
+      // use a Provider to pass the current theme to the tree below 
+      <ThemeContext.Provider value="dark">
+        <Toolbar />
+      </ThemeContext.Provider>
+    )
+  }
+}
+
+// a component in the middle doesn't have to pass the theme down
+function Toolbar() {
+  return (
+    <div>
+      <ThemeButton />
+    </div>
+  )
+}
+
+class ThemeButton extends React.Component {
+  // asign a contextType to read the current theme context
+  // React will find the closet theme Provider above and use its value
+  // in this example, the current theme is "dark"
+  static contextType = ThemeContext
+  render() {
+    return <Button theme={this.context}
+  }
+}
+
+```
+
+<br/>
+
+## 🍉 API
+- [React.createContext](#reactcreatecontext)
+- [Context.Provider](#contextprovider)
+- [Class.contextType](#classcontexttype)
+- [Context.Consumer](#contextconsumer)
+- [Context.displayName](#contextdisplayname)
+
+<br/>
 
 ### React.createContext
 ```jsx
 const MyContext  = React.CreateContext(defaultValue)
 ```
-創建context對象, 只有當組件所處的樹中沒有匹配Provider時, defaultValue參數才會生效
+- <code>createContext</code> 創建 Context object，訂閱該 Context 的組件會讀取"層級高於"且"最接近"的 <code>Provider</code> 值。
+- <code>defaultValue</code> 只在當組件沒有匹配到 Provider 時才生效。
+- Provider value 使用 <code>undefined</code> 不會使組件轉而使用 <code>defaultValue</code>。
 
+<br/>
 
 ### Context.Provider
 ```jsx
 <MyContext.Provider value={/*某個值*/}>
 ```
-1. 訂閱context變化, Provider接受一個value屬性, 傳遞給consumer組件
-2. Provider可以嵌套使用, 內層會覆蓋外層數據
-3. 當Provider的value值發生變化, 它內部所有的consumer組件都會重新渲染. Provider及其內部consumer組件都不受制於shouldComponentUpdate函數
+1. 每個 Context object 會返回一個 Provider React，它允許 consumer 組件訂閱 context 變化
+2. Provider 接受一個 value 屬性，將它傳給 consumer 組件
+3. 可以多個 Provider 嵌套使用，內層覆蓋外層數據
+4. 當 Provider 的 value 值發生變化，它內部所有的 consumer 組件都會重新渲染。
+5. Provider 到 consumer 組件的傳遞不受制於 <code>shouldComponentUpdate</code> 函數，因此當其祖先組件跳過更新的情況下也能更新。
+
+<br/>
 
 ### Class.contextType
 ```jsx
 class MyClass extends React.component {
   componentDidMount() {
-    let value = this.context;
+    let value = this.context
+    /* perform a side-effect at mount using the value of MyContext */
   }
   componentDidUpdate() {
     let value = this.context
@@ -39,34 +90,25 @@ class MyClass extends React.component {
   }
   render() {
     let value = this.context
+    /* render something based on the value of MyContext */
   }
 }
 MyClass.contextType = MyContext
 ```
-1. 掛載在class上的contextType屬性會被重新賦值, 為由React.createContext()創建的context對象, 讓你能使用this.context來消費最近context上的那個值
-2. 可以在任何生命週期及render函數中訪問
+1. 掛載在 class 上的 <code>contextType</code> 屬性可被 `React.createContext( )` 創建的 Context object 賦值，用 <code>this.context</code> 獲取context 值
+2. 可在所有生命週期及 render 函數中訪問到
 
-```jsx
-// 你正在使用实验性的 public class fields 语法，你可以使用 static 这个类属性来初始化你的 contextType。
-class MyClass extends React.Component {
-  static contextType = MyContext;
-  render() {
-    let value = this.context;
-    /* 基于这个值进行渲染工作 */
-  }
-}
-```
-
+<br/>
 
 ### Context.Consumer
 ```jsx
 <MyContext.Consumer>
-  {value => /* 基于 context 值进行渲染*/}
+  {value => /* render something based on the context value */}
 </MyContext.Consumer>
 ```
-1. 函數式組件訂閱context
+1. 在 function 組件訂閱 context 
 
-
+<br/>
 
 ### Context.displayName
 ```jsx
@@ -76,4 +118,4 @@ MyContext.displayName = 'MyDisplayName';
 <MyContext.Provider> // "MyDisplayName.Provider" 在 DevTools 中
 <MyContext.Consumer> // "MyDisplayName.Consumer" 在 DevTools 中
 ```
-context 对象接受一个名为 displayName 的 property，类型为字符串。React DevTools 使用该字符串来确定 context 要显示的内容。
+1. context object 接受 `displayName` 的 string 類型屬性。在 React DevTools 使用該 string 呈現 context 的内容。
