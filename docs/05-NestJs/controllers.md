@@ -4,7 +4,9 @@ Controllers are responsible for handling incoming requests and returning respons
 ![https://docs.nestjs.com/assets/Controllers_1.png](https://docs.nestjs.com/assets/Controllers_1.png)
 
 ## Routeing
+
 **@Controller()** 用來定義一個 controller, 可接受string作為route path
+
 ```ts title="dogs.controller.ts"
 import { Controller, Get } from '@nestjs/common';
 
@@ -16,9 +18,11 @@ export class CatsController {
   }
 }
 ```
+
 `GET http://localhost:3000/dogs`
 
 ---
+
 - **@Get()** 為HTTP method, 可接受string作為route path
 - 其他HTTP method: **@Get()**, **@Post()**, **@Put()**, **@Delete()**, **@Patch()**, **@Options()**, and **@Head()**
 - **@All()** 處理全部method
@@ -35,33 +39,26 @@ export class CatsController {
   }
 }
 ```
+
 `GET http://localhost:3000/dogs/golden-retriever`
 
 ---
 Nest employs two different options for manipulating responses:
 
-<table>
-  <tbody>
-    <tr>
-      <td>Standard (recommended)</td>
-      <td>
-        <p>built-in method</p>
-        <p>when a request handler returns a JavaScript object or array, it will automatically be serialized to JSON. When it returns a JavaScript primitive type (e.g., string, number, boolean), however, Nest will send just the value without attempting to serialize it.</p>
-        <p>the response's status code is always 200 by default, except for POST requests which use 201. We can easily change this behavior by adding the @HttpCode(...)</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Library-specific</td>
-      <td>
-        We can use the library-specific (e.g., Express) response object, which can be injected using the @Res() decorator in the method handler signature (e.g., findAll(@Res() response)). With this approach, you have the ability to use the native response handling methods exposed by that object. For example, with Express, you can construct responses using code like response.status(200).send().
-      </td>
-      <td>
-      </td>
-    </tr>
-  </tbody>
-</table>
+### Standard (recommended)
+
+built-in method
+
+when a request handler returns a JavaScript object or array, it will automatically be serialized to JSON. When it returns a JavaScript primitive type (e.g., string, number, boolean), however, Nest will send just the value without attempting to serialize it.
+
+the response's status code is always 200 by default, except for POST requests which use 201. We can easily change this behavior by adding the @HttpCode(...)
+
+### Library-specific
+
+We can use the library-specific (e.g., Express) response object, which can be injected using the @Res() decorator in the method handler signature (e.g., findAll(@Res() response)). With this approach, you have the ability to use the native response handling methods exposed by that object. For example, with Express, you can construct responses using code like response.status(200).send().
 
 ---
+
 ## Request Object
 
 **@Req()** 獲取request detail
@@ -79,6 +76,7 @@ export class CatsController {
   }
 }
 ```
+
 `GET http://localhost:3000/dogs/req`
 
 其他 decorators:
@@ -97,8 +95,11 @@ export class CatsController {
 | @HostParam() | req.hosts |
 
 ---
+
 ## Route Wildcards
+
 route 可使用通配符：
+
 ```js
 @Get('ab*cd')
 findAll() {
@@ -107,7 +108,9 @@ findAll() {
 ```
 
 ---
+
 ## Status Code
+
 response status code 預設200, 除了POST request 預設201, 利用 **@HttpCode(...)** 修改狀態碼
 
 ```ts
@@ -119,8 +122,11 @@ create() {
 ```
 
 ---
+
 ## Headers
+
 使用 **@Header()** 修改 res.header
+
 ```ts
 @Post()
 @Header('Cache-Control', 'none')
@@ -130,8 +136,11 @@ create() {
 ```
 
 ---
+
 ## Redirect
+
 使用 **Redirect()** 重新導向, 接受兩個參數 url 和 statusCode
+
 ```ts
 @Get('docs')
 @Redirect('https://docs.nestjs.com', 302)
@@ -141,9 +150,11 @@ getDocs(@Query('version') ve) {
   }
 }
 ```
+
 `GET http://localhost:3000/dogs/docs?version=5`
 
 ---
+
 ## Router Parameters
 
 ```ts
@@ -152,19 +163,25 @@ GetId(@Param() params): string {
   return `id: ${params.id}`;
 }
 ```
+
 `GET http://localhost:3000/dogs/1`
 
 ---
+
 ## Sub-Domain Routing
+
 看無 待補
 
 ## Scope
+
 看無 待補
 
 ## Asynchronicity
+
 好像是可以async function, 待補
 
 ## Request payloads
+
 使用 DTO(data transfer object)schema 定義 data.
 
 ```ts title="create-cat.dto.ts"
@@ -174,6 +191,7 @@ export class CreateCatDto {
   breed: string;
 }
 ```
+
 ```ts title="cats.controller.ts"
 @Post()
 async create(@Body() createCatDto: CreateCatDto) {
@@ -181,17 +199,17 @@ async create(@Body() createCatDto: CreateCatDto) {
 }
 ```
 
-
 ## Reference
+
 - @Controller(route: string)
   - route: optimal
 - @Get(path: string)
-  - path: optimal 
+  - path: optimal
 - @HttpCode(response)
-  - response: number 
+  - response: number
 - @Header(field, value)
   - field: string
   - value:
 - @Redirect(url, statusCode)
   - url: string
-  - statusCodeL number 
+  - statusCodeL number

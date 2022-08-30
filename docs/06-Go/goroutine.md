@@ -7,4 +7,4 @@
 - **並行 Parallel:** 利用多個CPU達到同時並行處理多個任務.
 - **協程 Coroutine:** coroutine在thread內, 是一種使用者態的輕量級執行緒, 協程的排程完全由使用者控制
 
- ![Concurrency-Parallel](https://techdifferences.com/wp-content/uploads/2017/12/Untitled.jpg)
+![Concurrency-Parallel](https://techdifferences.com/wp-content/uploads/2017/12/Untitled.jpg)

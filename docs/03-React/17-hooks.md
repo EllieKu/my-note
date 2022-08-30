@@ -1,8 +1,10 @@
 # Hooks
+
 ***
 
 ## 🎈 State Hook
-<code>useState</code> 類似 class 組件的 <code>this.state</code>， 透過在 function 組件內調用來給組件添加一個內部的 state。
+
+`useState` 類似 class 組件的 `this.state`， 透過在 function 組件內調用來給組件添加一個內部的 state。
 
 ```jsx {1,5}
 import React, { useState } from 'react'
@@ -29,10 +31,9 @@ function Example() {
 </button>
 ```
 
-<br/>
-
 ### Declaring multiple state variables
-可在同組件內多次使用 <code>useState</code>， 更新 state 是<code>替換</code>而不是合併。
+
+可在同組件內多次使用 `useState`， 更新 state 是`替換`而不是合併。
 
 ```jsx
 function ExampleWithManyStates() {
@@ -50,10 +51,9 @@ function ExampleWithManyStates() {
 }
 ```
 
-<br/>
-
 ## 🎈 Effect Hook
-<code>useEffect</code> 給 function 組件增加 side effect，它和 class 組件中的 <code>componentDidMount</code>、<code>componentDidUpdate</code>、<code>componentWillUnmount</code>具有相同用途。 
+
+`useEffect` 給 function 組件增加 side effect，它和 class 組件中的 `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`具有相同用途。
 
 ```jsx {1,7-9}
 import React, { useState, useEffect } from 'react'
@@ -77,8 +77,10 @@ function Example() {
 }
 ```
 
-當使用 <code>useEffect</code> 時，就是在告訴 React 在完成對 DOM 的更改後運行此 effect function。 <br />
-默認情況下，React 會在每次(包括第一次)渲染後調用 effect function。 <br />
+當使用 `useEffect` 時，就是在告訴 React 在完成對 DOM 的更改後運行此 effect function。
+
+默認情況下，React 會在每次(包括第一次)渲染後調用 effect function。
+
 effect function 可以透過 return 一個 function 來指定如何清除 side effect。
 
 ```jsx {14-16}
@@ -109,23 +111,22 @@ function FriendState(props) {
 
 ```
 
-<br/>
-
 ## 🏕️ Hooks rules
+
 1. 只能在函數頂層調用 Hook。不要在 loops、conditions、nested functions 調用。
 2. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
-
-<br/>
 
 ## 🔪 Building Your Own Hooks
 
 想在組件之間重複使用一些狀態邏輯，有幾種方式來解決此問題：
-  1. higher-order components
-  2. render props
-  3. custom hooks
 
-如果函數的名字以 "use" 開頭並調用其他 hook，我們就說這一定是自定義 hook。 <br />
+1. higher-order components
+2. render props
+3. custom hooks
+
+如果函數的名字以 "use" 開頭並調用其他 hook，我們就說這一定是自定義 hook。
 範例:
+
 ```jsx
 // 1. 將狀態邏輯抽取至名為 useFriendStatus 的自定義 hook，
 import React, { useState, useEffect } from 'react';

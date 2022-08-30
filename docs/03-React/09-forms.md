@@ -6,8 +6,11 @@ tags: [react]
 ***
 
 ### Controlled Component
-渲染表單的 React 組件利用 state 來控制著使用者輸入後的行為。 
+
+渲染表單的 React 組件利用 state 來控制著使用者輸入後的行為。
+
 对于受控组件来说，输入的值始终由 React 的 state 驱动。
+
 ```jsx {7,12-14,25}
 // write the form as a controlled component
 
@@ -42,9 +45,8 @@ class NameForm extends React.Component {
 }
 ```
 
-<br/>
-
 ### <select\> tag
+
 ```jsx {4,10-12,24}
 class FlavorForm extends React.Component {
   constructor(props) {
@@ -83,19 +85,18 @@ class FlavorForm extends React.Component {
 }
 ```
 
-<br/>
-
 ### <input type="file"\> Tag
+
 允許使用者從裝置中選擇文件上傳至 server，或透過使用 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 控制。
 因為其 value 是唯讀，所以是一個非受控組件。[其它非受控組件](https://zh-hans.reactjs.org/docs/uncontrolled-components.html#the-file-input-tag)
+
 ```html
 <input type="file">
 ```
 
-<br/>
-
 ### Handling Multiple Inputs
-可以給每個元素添加 <code>name</code> 屬性, 並讓事件處理函數依 <code>event.target.name</code> 對應執行的操作
+
+可以給每個元素添加 `name` 屬性, 並讓事件處理函數依 `event.target.name` 對應執行的操作
 
 ```jsx {15,18,28,37}
 class Reservation extends React.Component {
@@ -145,10 +146,9 @@ class Reservation extends React.Component {
 }
 ```
 
-<br/>
-
 ### Controlled Input Null Value
-指定受控組件的 <code>value</code> 會阻止用戶輸入。如果指定了 <code>value</code> 但輸入仍可編輯，則可能是 <code>value</code> 值意外變成了 <code>undefined</code> 或 <code>null</code>。
+
+指定受控組件的 `value` 會阻止用戶輸入。如果指定了 `value` 但輸入仍可編輯，則可能是 `value` 值意外變成了 `undefined` 或 `null`。
 
 ```jsx
 // 一開始被鎖定, 但1秒後變可編輯
@@ -159,7 +159,6 @@ setTimeout(function() {
 }, 1000);
 ```
 
-<br/>
-
 ### 其他方案
+
 [Formik](https://formik.org/)

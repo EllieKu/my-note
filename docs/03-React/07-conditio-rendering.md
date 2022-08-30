@@ -5,7 +5,7 @@ tags: [react]
 ---
 ***
 
-使用 <code>if</code> 或 <code>conditional operator</code> 來呈現 UI
+使用 `if` 或 `conditional operator` 來呈現 UI
 
 ```jsx
 function UserGreeting(props) {
@@ -92,10 +92,9 @@ ReactDOM.render(
 
 ```
 
-<br/>
-
 ## 🍉 Inline If with Logical && Operator
-<code>true && expression</code> return <code>expression</code> ; <code>false && expression</code> return <code>false</code>。
+
+`true && expression` return `expression` ; `false && expression` return `false`。
 
 ```jsx {6}
 function Mailbox(props) {
@@ -114,9 +113,8 @@ ReactDOM.render(
 )
 ```
 
-<br/>
-
 ## 🍉 Inline If-Else with Conditional Operator
+
 ```jsx {5}
 render() {
   const isLoggedIn = this.state.isLoggedIn
@@ -128,10 +126,9 @@ render() {
 }
 ```
 
-<br/>
-
 ## 🍉 Preventing Component from Rendering
-返回 <code>null</code> 。
+
+返回 `null` 。
 
 ```jsx {2-4}
 function WarningBanner(props) {

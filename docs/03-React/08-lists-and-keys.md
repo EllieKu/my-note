@@ -4,10 +4,13 @@ title: List and Keys
 tags: [react]
 ---
 ***
+
 ## 🍉 List
 
 ### Rendering Multiple Components
-使用 <code>{ }</code> 在建構元素集合
+
+使用 `{ }` 在建構元素集合
+
 ```jsx
 function List() {
   const numbers = [1, 2, 3, 4, 5];
@@ -21,10 +24,10 @@ function List() {
 }
 ```
 
-<br/>
-
 ## 🍉 Keys
+
 keys 用來識別哪些元素有變動。
+
 ```jsx {3}
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
@@ -35,6 +38,7 @@ const listItems = numbers.map((number) =>
 ```
 
 當元素沒有 id 時，萬不得已可以用 index 作為 key。但不建議使用因為會導致性能變差，還可能引起組件狀態問題。
+
 ```jsx {3}
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
@@ -44,9 +48,8 @@ const todoItems = todos.map((todo, index) =>
 )
 ```
 
-<br/>
-
 ### Extracting Components with Keys
+
 key 放在就近數組的上下文中才有意義
 
 ```jsx {3,9}
@@ -73,10 +76,10 @@ ReactDOM.render(
 )
 ```
 
-<br/>
-
 ### Keys Must Only Be Unique Among Siblings
+
 當生成兩個不同數組時，可以使用相同 key 值：
+
 ```jsx {5,12}
 function Blog(props) {
   const sidebar = (
@@ -114,6 +117,7 @@ ReactDOM.render(
 ```
 
 key 會傳遞數據給 React，但不會傳遞給組件：
+
 ```jsx
 // Post組件可讀出id值, 但不能讀出key值
 const content = posts.map((post) => 
@@ -122,4 +126,4 @@ const content = posts.map((post) =>
     id={post.id}
     title={post.title} />
 )
-``` 
+```

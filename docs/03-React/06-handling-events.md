@@ -7,19 +7,24 @@ tags: [react]
 
 - 事件命名採小駝峰 camelCase
 - 使用 JSX 語法時需要傳入 function 作為 event handler，而不是 string
+
 ```html
 <!-- HTML -->
 <button onclick="handleClick()">click1</button>
 ```
+
 ```jsx
 // JSX
 <button onClick={handleClick}>click1</button>
 ```
-- 阻止默認行為在 React 中必須使用 <code>preventDefault</code>，不能像 html 使用<code>return false</code>
+
+- 阻止默認行為在 React 中必須使用 `preventDefault`，不能像 html 使用`return false`
+
 ```html
 <!-- HTML -->
 <button onclick="console.log('The link was clicked'); return false">click2</button>
 ```
+
 ```jsx {4}
 // JSX
 function ActionLink() {
@@ -36,9 +41,8 @@ function ActionLink() {
 }
 ```
 
-<br/>
-
 ## 🍉 Passing Arguments to Event Handlers
+
 ```jsx
 // 若要傳遞id, 下列兩種等價:
 // 1. 箭頭函式下 React event 會作為第二個參數傳遞, 必須顯示進行傳遞

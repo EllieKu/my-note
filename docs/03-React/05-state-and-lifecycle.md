@@ -12,7 +12,7 @@ state 是私有的且完全受控於當前組件。
 
 ### Do Not Modify State Directly
 
-使用 <code>setState()</code> 修改 state。
+使用 `setState()` 修改 state。
 ```jsx
 // wrong
 this.state.comment = 'Hello'
@@ -25,7 +25,7 @@ this.setState({comment: 'Hello'})
 
 ### State Updates May Be Asynchronous
 
-<code>this.state</code> 和 <code>this.props</code> 可能是異步更新，不要依賴它們的值來更新下一個狀態。
+`this.state` 和 `this.props` 可能是異步更新，不要依賴它們的值來更新下一個狀態。
 
 ```jsx
 // wrong
@@ -42,7 +42,7 @@ this.setState((state, props) => ({
 <br/>
 
 ### State Updates are Merged
-當調用 <code>setState()</code>， React 會提供的 object 合併到當前 state。
+當調用 `setState()`， React 會提供的 object 合併到當前 state。
 
 <br/>
 
@@ -52,6 +52,6 @@ this.setState((state, props) => ({
 <br/>
 
 ## 🍉 Lifecycle
-- <code>componentDidMount</code>
-- <code>componentWillUnmount</code>
-- <code>componentUpdate</code>
+- `componentDidMount`
+- `componentWillUnmount`
+- `componentUpdate`
