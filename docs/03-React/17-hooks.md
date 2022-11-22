@@ -1,5 +1,8 @@
-# Hooks
-
+---
+slug: hooks
+title: Hooks
+tags: [react]
+---
 ***
 
 ## 🎈 State Hook
@@ -113,8 +116,9 @@ function FriendState(props) {
 
 ## 🏕️ Hooks rules
 
-1. 只能在函數頂層調用 Hook。不要在 loops、conditions、nested functions 調用。
-2. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
+1. Hook 只在`函數頂層`調用。
+2. Hook 不可在 `loops`、`conditions`、`nested functions` 調用。
+3. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
 
 ## 🔪 Building Your Own Hooks
 
@@ -164,9 +168,10 @@ function FriendListItem(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   return (
-    <li style={{ color: isOnline ? 'green' : 'black' }}>
+    <li
+      style={{ color: isOnline ? 'green' : 'black' }}>
       {props.friend.name}
     </li>
-  );
+  )
 }
 ```
