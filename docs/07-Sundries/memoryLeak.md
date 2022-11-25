@@ -39,8 +39,8 @@ Chrome 提供的 DevTool 找出 memory leak
   ```js
   for (var k = 0; k < 10; k++) {
     var t = function (a) {
-    console.log(a)
-  }
+      console.log(a)
+    }
     t(k)
   }
   ```

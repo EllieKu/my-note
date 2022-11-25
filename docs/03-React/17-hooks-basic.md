@@ -1,8 +1,13 @@
-# Hooks
-
+---
+slug: hooks-basic
+title: Hooks Basic
+tags: [react]
+---
 ***
 
-## 🎈 State Hook
+[🎬 useState](#-usestate) [🎬 useEffect](#-useeffect)
+
+## 🎈 useState
 
 `useState` 類似 class 組件的 `this.state`， 透過在 function 組件內調用來給組件添加一個內部的 state。
 
@@ -51,9 +56,12 @@ function ExampleWithManyStates() {
 }
 ```
 
-## 🎈 Effect Hook
+***
 
-`useEffect` 給 function 組件增加 side effect，它和 class 組件中的 `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`具有相同用途。
+## 🎈 useEffect
+
+- side effect，runs `first` and after `every update`
+- 類似 `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`
 
 ```jsx {1,7-9}
 import React, { useState, useEffect } from 'react'
@@ -77,11 +85,10 @@ function Example() {
 }
 ```
 
-當使用 `useEffect` 時，就是在告訴 React 在完成對 DOM 的更改後運行此 effect function。
+### Cleanup
 
-默認情況下，React 會在每次(包括第一次)渲染後調用 effect function。
-
-effect function 可以透過 return 一個 function 來指定如何清除 side effect。
+- return a function that clean up side effect
+- cleanup happened when the component unmount
 
 ```jsx {14-16}
 import React, { useState, useEffect } from 'react',
@@ -111,10 +118,18 @@ function FriendState(props) {
 
 ```
 
+:::tip
+
+1. Use Multiple Effects to Separate Concerns
+2. Optimizing Performance by Skipping Effects
+
+:::
+
 ## 🏕️ Hooks rules
 
-1. 只能在函數頂層調用 Hook。不要在 loops、conditions、nested functions 調用。
-2. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
+1. Hook 只在`函數頂層`調用。
+2. Hook 不可在 `loops`、`conditions`、`nested functions` 調用。
+3. 只能在 React 的 function 組件中調用，不要在其他 JS 函數中調用(還有一個地方可以調用 Hook -- 就是自定義的 Hook)
 
 ## 🔪 Building Your Own Hooks
 
@@ -145,7 +160,7 @@ function useFriendStatus(friendID) {
     };
   });
 
-  return isOnline;
+  return isOnline
 }
 ```
 
@@ -157,16 +172,17 @@ function FriendStatus(props) {
   if (isOnline === null) {
     return 'Loading...';
   }
-  return isOnline ? 'Online' : 'Offline';
+  return isOnline ? 'Online' : 'Offline'
 }
 
 function FriendListItem(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   return (
-    <li style={{ color: isOnline ? 'green' : 'black' }}>
+    <li
+      style={{ color: isOnline ? 'green' : 'black' }}>
       {props.friend.name}
     </li>
-  );
+  )
 }
 ```
