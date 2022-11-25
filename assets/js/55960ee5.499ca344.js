@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_note=self.webpackChunkmy_note||[]).push([[4121],{8070:function(e){e.exports=JSON.parse('[{"name":"css","permalink":"/my-note/docs/tags/css","count":1},{"name":"react","permalink":"/my-note/docs/tags/react","count":12}]')}}]);
