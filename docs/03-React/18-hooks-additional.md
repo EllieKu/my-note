@@ -6,7 +6,11 @@ tags: [react]
 ***
 
 [🎬 useReducer](#-usereducer)
+[🎬 useCallback](#-usecallback)
+[🎬 useMemo](#-usememo)
 [🎬 useRef](#-useref)
+[🎬 useImperativeHandle](#-useimperativehandle)
+[🎬 useLayoutEffect](#-uselayouteffect)
 
 ## 🍑 useReducer
 
@@ -55,6 +59,17 @@ export default function Page() {
 }
 ```
 
+## 🍑 useCallback
+
+- returns a memorized `value`
+- `useCallback(fn, deps)` === `useMemo(() => fn, deps)`
+- run the callback when one of dependencies has changed
+
+## 🍑 useMemo
+
+- returns a memorized `callback`
+- recomputed the memorized value when one of dependencies has changed
+
 ## 🍑 useRef
 
 ```jsx
@@ -80,3 +95,9 @@ function TextInputWithFocusButton() {
   )
 }
 ```
+
+## 🍑 useImperativeHandle
+
+## 🍑 useLayoutEffect
+
+- 與 `useEffect` 相同, 但是在 DOM 變更後觸發
