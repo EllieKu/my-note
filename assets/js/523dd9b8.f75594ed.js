@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_note=self.webpackChunkmy_note||[]).push([[3107],{7754:s=>{s.exports=JSON.parse('{"name":"Class","permalink":"/my-note/docs/tags/class","docs":[{"id":"JavaScrtipt/class","title":"Class","description":"*","permalink":"/my-note/docs/JavaScrtipt/class"}],"allTagsPath":"/my-note/docs/tags"}')}}]);
