@@ -1,61 +1,36 @@
-# Classes
+---
+slug: class
+title: Class
+tags: [JavaScript, Class]
+---
+***
 
-[Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+可用兩種語法來定義： Declaration & Expression
 
-## 定義
+### Declaration
 
-*Classes* 是"特殊的函數", 可用兩種語法來定義：
-
-1. **class expressions**
-2. **class declarations**
-
-### class declaration
-
-- 可命名聲明
-
-```js
-class Rectangle {
-  constructor (height, width) {
-    this.height = height
-    this.width = width
-  }
-}
-```
-
-- No Hoisting
-
-class declaration 不會 hoisting, 否則將拋出 *ReferenceError*
+- 可命名
+- Not hoisting
 
 ```js
-let p = new Rectangle() // ReferenceError
+new Rectangle() // ReferenceError: Cannot access 'Rectangle' before initialization
+
 class Rectangle {
   ...
 }
 ```
 
-### class expression
+### Expression
 
 - 可命名或匿名
-
 ```js
-// 匿名
-// 可以透過class's (not an instance's) 的 name 屬性來訪問
 let Rectangle = class {
-  constructor (height, width) {
-    this.height = height
-    this.width = width
-  }
+  ...
 }
 console.log(Rectangle.name) // Rectangle
-```
 
-```js
-// 命名
 let Obj = class Rectangle {
-  constructor (height, width) {
-    this.height = height
-    this.width = width
-  }
+  ...
 }
 console.log(Obj.name) // Rectangle
 ```
@@ -209,3 +184,7 @@ d.speak(); // Mitzie makes a noise.
 *super* 用於調用其父層class的方法
 
 ### Mix-ins
+
+## Reference
+
+[Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
