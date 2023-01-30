@@ -4,6 +4,7 @@ title: Narrowing
 tags: [TypeScript]
 ---
 ***
+
 the process of refining types to more specific types than declared is called narrowing
 
 ```ts
@@ -56,6 +57,36 @@ function logValue(x: Date | string) {
     console.log(x.toUTCString());
   } else {
     console.log(x.toUpperCase());
+  }
+}
+```
+
+## type predicate
+
+`parameterName is Type` define a function whose return type is a type predicate
+
+```ts
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+```
+
+## never
+
+never type represent a state which shouldn’t exist.
+
+```ts
+type Shape = Circle | Square;
+ 
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+    default:
+      const _exhaustiveCheck: never = shape;
+      return _exhaustiveCheck;
   }
 }
 ```
