@@ -18,6 +18,7 @@ let myName: string = "Alice"
 ```
 
 ## function
+
 ```ts
 function greet(name: string): void {
   console.log("Hello, " + name.toUpperCase() + "!!")
@@ -25,6 +26,7 @@ function greet(name: string): void {
 ```
 
 ## object
+
 ```ts
 function printCoord(pt: { x: number; y: number }) {
   console.log("The coordinate's x value is " + pt.x);
@@ -45,13 +47,15 @@ printName({ first: "Alice", last: "Alisson" });
 ```
 
 ## union
+
 ```ts
 function printId(id: number | string) {
   console.log("Your ID is: " + id);
 }
 ```
 
-## aliase & interface
+## alias & interface
+
 ```ts
 type Point = {
   x: number;
@@ -73,6 +77,7 @@ printCoord({ x: 100, y: 100 });
 ```
 
 ### Differences
+
 type cannot be re-opened to add new properties vs an interface which is always extendable
 
 ```ts
@@ -100,12 +105,15 @@ type Window = {
 ```
 
 ## Type Assertion
+
 ```ts
 const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
 ```
 
 ## Literal Types
+
 specific **strings** and **numbers** in type positions
+
 ```ts
 function printText(s: string, alignment: "left" | "right" | "center") {
   // ...
@@ -121,16 +129,19 @@ function compare(a: string, b: string): -1 | 0 | 1 {
 ### strictNullChecks --off
 
 ### strictNullChecks --on
+
 when a value is null or undefined, you will need to test for those values before using methods or properties on that value
 
 ## Less Common Primitive
 
 bigint:
+
 ```ts
 const oneHundred: bigint = BigInt(100);
 ```
 
 symbol:
+
 ```ts
 const firstName = Symbol("name");
 const secondName = Symbol("name");

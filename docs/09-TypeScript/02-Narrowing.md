@@ -29,7 +29,8 @@ function padLeft(padding: number | string, input: string) {
 | Undefined | "undefined" |
 
 ## in operator
-if an object has a property with a name, use `in` operator 
+
+if an object has a property with a name, use `in` operator
 
 ```ts
 type Fish = { swim: () => void };
@@ -45,7 +46,9 @@ function move(animal: Fish | Bird) {
 ```
 
 ## instanceof
+
 check whether or not a value is an “instance” of another value
+
 ```ts
 
 function logValue(x: Date | string) {

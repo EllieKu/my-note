@@ -23,6 +23,7 @@ class Rectangle {
 ### Expression
 
 - 可命名或匿名
+
 ```js
 let Rectangle = class {
   ...
