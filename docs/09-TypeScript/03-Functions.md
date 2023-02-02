@@ -49,4 +49,39 @@ test.description = 'is lager than 5'
 doSomething(test) // "is lager than 5 returned true"
 ```
 
+## Construct Signatures
 
+????
+
+## Generic Functions
+
+use `type` to describe a correspondence between two values
+```ts
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+```
+
+```ts
+function map<Input, Output>(arr: Input[], func: (arg: Input) => Output): Output[] {
+  return arr.map(func);
+}
+ 
+// Parameter 'n' is of type 'string'
+// 'parsed' is of type 'number[]'
+const parsed = map(["1", "2", "3"], (n) => parseInt(n));
+```
+
+## Constraints
+
+use `extends` to set a subset of values
+
+```ts
+function longest<Type extends { length: number }>(a: Type, b: Type) {
+  if (a.length >= b.length) {
+    return a;
+  } else {
+    return b;
+  }
+}
+```
