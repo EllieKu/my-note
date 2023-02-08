@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Ellie's Note Blog</title>
+        <link>https://ellieku.github.io/my-note/blog</link>
+        <description>Ellie's Note Blog</description>
+        <lastBuildDate>Wed, 08 Feb 2023 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[React Style]]></title>
+            <link>https://ellieku.github.io/my-note/blog/react-style</link>
+            <guid>react-style</guid>
+            <pubDate>Wed, 08 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[How to add CSS in React]]></description>
+        </item>
+    </channel>
+</rss>
