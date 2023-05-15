@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_note=self.webpackChunkmy_note||[]).push([[2535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Memory Leak","permalink":"/my-note/blog/memory-leak"},{"title":"Mobile Safe Area","permalink":"/my-note/blog/mobile-safe-area"},{"title":"React Style","permalink":"/my-note/blog/react-style"}]}')}}]);

@@ -4,9 +4,23 @@
         <title>Ellie's Note Blog</title>
         <link>https://ellieku.github.io/my-note/blog</link>
         <description>Ellie's Note Blog</description>
-        <lastBuildDate>Wed, 08 Feb 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 15 May 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Memory Leak]]></title>
+            <link>https://ellieku.github.io/my-note/blog/memory-leak</link>
+            <guid>memory-leak</guid>
+            <pubDate>Mon, 15 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Memory Leak]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Mobile Safe Area]]></title>
+            <link>https://ellieku.github.io/my-note/blog/mobile-safe-area</link>
+            <guid>mobile-safe-area</guid>
+            <pubDate>Mon, 15 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[How to set the safe area in different type of mobile]]></description>
+        </item>
         <item>
             <title><![CDATA[React Style]]></title>
             <link>https://ellieku.github.io/my-note/blog/react-style</link>
