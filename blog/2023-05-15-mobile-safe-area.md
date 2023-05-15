@@ -1,4 +1,10 @@
-# 手機瀏海有無的UI
+---
+title: Mobile Safe Area
+description: How to set the safe area in different type of mobile
+slug: mobile-safe-area
+tags: [css]
+hide_table_of_contents: false
+---
 
 ## 什麼是safe area?
 

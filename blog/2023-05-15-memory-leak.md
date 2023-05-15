@@ -1,4 +1,10 @@
-# Memory Leak
+---
+title: Memory Leak
+description: Memory Leak
+slug: memory-leak
+tags: [sundry]
+hide_table_of_contents: false
+---
 
 ## 起因
 
@@ -66,12 +72,17 @@ Chrome 提供的 DevTool 找出 memory leak
   elements.btn = null。
   ```
 
-- 定時器與事件監聽
+- 定時器
 
-  ```js
-  ```
-
-待補充
+```js
+var serverData = loadData()
+setInterval(function () {
+  var renderer = document.getElementById('renderer')
+  if (renderer) {
+    renderer.innerHTML = JSON.stringify(serverData)
+  }
+}, 5000)
+```
 
 ## 參考來源
 
